@@ -2,7 +2,7 @@
 
 import React, { useState } from 'react'
 import { motion } from 'framer-motion'
-import { Mail, Phone, MapPin, Send, Calendar, MessageSquare } from 'lucide-react'
+import { Mail, Phone, MapPin, Send, Calendar, MessageSquare, Check } from 'lucide-react'
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
 import { Button } from '@/components/ui/button'
 
@@ -16,6 +16,7 @@ export function Contact() {
 
   const [isSubmitting, setIsSubmitting] = useState(false)
   const [submitMessage, setSubmitMessage] = useState('')
+  const [showSuccess, setShowSuccess] = useState(false)
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     setFormData({
@@ -28,6 +29,9 @@ export function Contact() {
     e.preventDefault()
     setIsSubmitting(true)
     setSubmitMessage('')
+    setShowSuccess(false)
+
+    console.log('Form submitted with data:', formData)
 
     try {
       const response = await fetch('/api/contact', {
@@ -38,15 +42,25 @@ export function Contact() {
         body: JSON.stringify(formData),
       })
 
+      console.log('Response status:', response.status)
       const data = await response.json()
+      console.log('Response data:', data)
 
       if (response.ok) {
+        setShowSuccess(true)
         setSubmitMessage('Thank you for your message! We will get back to you soon.')
         setFormData({ name: '', email: '', company: '', message: '' })
+        
+        // Auto-hide success message after 5 seconds
+        setTimeout(() => {
+          setShowSuccess(false)
+          setSubmitMessage('')
+        }, 5000)
       } else {
         setSubmitMessage(data.error || 'Something went wrong. Please try again.')
       }
     } catch (error) {
+      console.error('Submit error:', error)
       setSubmitMessage('Network error. Please check your connection and try again.')
     } finally {
       setIsSubmitting(false)
@@ -181,7 +195,76 @@ export function Contact() {
                 </CardTitle>
               </CardHeader>
               <CardContent>
-                <form onSubmit={handleSubmit} className="space-y-6">
+                {/* Success Animation */}
+                {showSuccess && (
+                  <motion.div
+                    initial={{ opacity: 0, scale: 0.5 }}
+                    animate={{ opacity: 1, scale: 1 }}
+                    exit={{ opacity: 0, scale: 0.5 }}
+                    className="text-center py-12"
+                  >
+                    <motion.div
+                      initial={{ scale: 0 }}
+                      animate={{ scale: 1 }}
+                      transition={{
+                        delay: 0.2,
+                        type: "spring",
+                        stiffness: 200,
+                        damping: 15
+                      }}
+                      className="inline-flex items-center justify-center w-20 h-20 rounded-full bg-green-500 mb-6"
+                    >
+                      <motion.div
+                        initial={{ scale: 0, rotate: -180 }}
+                        animate={{ scale: 1, rotate: 0 }}
+                        transition={{
+                          delay: 0.5,
+                          type: "spring",
+                          stiffness: 200,
+                          damping: 10
+                        }}
+                      >
+                        <Check className="w-10 h-10 text-white" strokeWidth={3} />
+                      </motion.div>
+                    </motion.div>
+                    
+                    <motion.h3
+                      initial={{ opacity: 0, y: 20 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      transition={{ delay: 0.8 }}
+                      className="text-2xl font-bold text-riverside-white mb-4"
+                    >
+                      Message Sent Successfully!
+                    </motion.h3>
+                    
+                    <motion.p
+                      initial={{ opacity: 0, y: 20 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      transition={{ delay: 1 }}
+                      className="text-riverside-white/80 mb-6 max-w-md mx-auto"
+                    >
+                      Thank you for reaching out! We've received your message and will get back to you within 24 hours.
+                    </motion.p>
+                    
+                    <motion.div
+                      initial={{ opacity: 0 }}
+                      animate={{ opacity: 1 }}
+                      transition={{ delay: 1.2 }}
+                      className="flex items-center justify-center space-x-2 text-riverside-blue text-sm"
+                    >
+                      <motion.div
+                        animate={{ rotate: 360 }}
+                        transition={{ duration: 2, repeat: Infinity, ease: "linear" }}
+                        className="w-4 h-4 border-2 border-riverside-blue border-t-transparent rounded-full"
+                      />
+                      <span>Processing your message...</span>
+                    </motion.div>
+                  </motion.div>
+                )}
+
+                {/* Contact Form */}
+                {!showSuccess && (
+                  <form onSubmit={handleSubmit} className="space-y-6">
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                     <motion.div
                       initial={{ opacity: 0, y: 20 }}
@@ -263,37 +346,48 @@ export function Contact() {
                     />
                   </motion.div>
 
-                  {submitMessage && (
+                    {/* Error Message Display */}
+                    {submitMessage && !showSuccess && (
+                      <motion.div
+                        initial={{ opacity: 0, y: 20 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        className="p-4 rounded-lg bg-red-500/20 border border-red-500/30 text-red-400"
+                      >
+                        {submitMessage}
+                      </motion.div>
+                    )}
+
                     <motion.div
                       initial={{ opacity: 0, y: 20 }}
-                      animate={{ opacity: 1, y: 0 }}
-                      className={`p-4 rounded-lg ${
-                        submitMessage.includes('Thank you') 
-                          ? 'bg-green-500/20 border border-green-500/30 text-green-400'
-                          : 'bg-red-500/20 border border-red-500/30 text-red-400'
-                      }`}
+                      whileInView={{ opacity: 1, y: 0 }}
+                      transition={{ duration: 0.6, delay: 0.5 }}
+                      viewport={{ once: true }}
                     >
-                      {submitMessage}
+                      <Button
+                        type="submit"
+                        size="lg"
+                        disabled={isSubmitting}
+                        className="w-full md:w-auto bg-riverside-blue hover:bg-riverside-blue-dark text-riverside-black font-semibold px-8 py-4 text-lg transition-all duration-200 hover:shadow-lg hover:shadow-riverside-blue/25 disabled:opacity-50 disabled:cursor-not-allowed"
+                      >
+                        {isSubmitting ? (
+                          <>
+                            <motion.div
+                              animate={{ rotate: 360 }}
+                              transition={{ duration: 1, repeat: Infinity, ease: "linear" }}
+                              className="w-5 h-5 mr-2 border-2 border-riverside-black border-t-transparent rounded-full"
+                            />
+                            Sending...
+                          </>
+                        ) : (
+                          <>
+                            <Send className="w-5 h-5 mr-2" />
+                            Send Message
+                          </>
+                        )}
+                      </Button>
                     </motion.div>
-                  )}
-
-                  <motion.div
-                    initial={{ opacity: 0, y: 20 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 0.6, delay: 0.5 }}
-                    viewport={{ once: true }}
-                  >
-                    <Button
-                      type="submit"
-                      size="lg"
-                      disabled={isSubmitting}
-                      className="w-full md:w-auto bg-riverside-blue hover:bg-riverside-blue-dark text-riverside-black font-semibold px-8 py-4 text-lg transition-all duration-200 hover:shadow-lg hover:shadow-riverside-blue/25 disabled:opacity-50 disabled:cursor-not-allowed"
-                    >
-                      <Send className="w-5 h-5 mr-2" />
-                      {isSubmitting ? 'Sending...' : 'Send Message'}
-                    </Button>
-                  </motion.div>
-                </form>
+                  </form>
+                )}
               </CardContent>
             </Card>
           </motion.div>
