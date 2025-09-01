@@ -14,6 +14,9 @@ export function Contact() {
     message: ''
   })
 
+  const [isSubmitting, setIsSubmitting] = useState(false)
+  const [submitMessage, setSubmitMessage] = useState('')
+
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     setFormData({
       ...formData,
@@ -21,10 +24,33 @@ export function Contact() {
     })
   }
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
-    // Handle form submission here
-    console.log('Form submitted:', formData)
+    setIsSubmitting(true)
+    setSubmitMessage('')
+
+    try {
+      const response = await fetch('/api/contact', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(formData),
+      })
+
+      const data = await response.json()
+
+      if (response.ok) {
+        setSubmitMessage('Thank you for your message! We will get back to you soon.')
+        setFormData({ name: '', email: '', company: '', message: '' })
+      } else {
+        setSubmitMessage(data.error || 'Something went wrong. Please try again.')
+      }
+    } catch (error) {
+      setSubmitMessage('Network error. Please check your connection and try again.')
+    } finally {
+      setIsSubmitting(false)
+    }
   }
 
   const contactInfo = [
@@ -237,6 +263,20 @@ export function Contact() {
                     />
                   </motion.div>
 
+                  {submitMessage && (
+                    <motion.div
+                      initial={{ opacity: 0, y: 20 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      className={`p-4 rounded-lg ${
+                        submitMessage.includes('Thank you') 
+                          ? 'bg-green-500/20 border border-green-500/30 text-green-400'
+                          : 'bg-red-500/20 border border-red-500/30 text-red-400'
+                      }`}
+                    >
+                      {submitMessage}
+                    </motion.div>
+                  )}
+
                   <motion.div
                     initial={{ opacity: 0, y: 20 }}
                     whileInView={{ opacity: 1, y: 0 }}
@@ -246,10 +286,11 @@ export function Contact() {
                     <Button
                       type="submit"
                       size="lg"
-                      className="w-full md:w-auto bg-riverside-blue hover:bg-riverside-blue-dark text-riverside-black font-semibold px-8 py-4 text-lg transition-all duration-200 hover:shadow-lg hover:shadow-riverside-blue/25"
+                      disabled={isSubmitting}
+                      className="w-full md:w-auto bg-riverside-blue hover:bg-riverside-blue-dark text-riverside-black font-semibold px-8 py-4 text-lg transition-all duration-200 hover:shadow-lg hover:shadow-riverside-blue/25 disabled:opacity-50 disabled:cursor-not-allowed"
                     >
                       <Send className="w-5 h-5 mr-2" />
-                      Send Message
+                      {isSubmitting ? 'Sending...' : 'Send Message'}
                     </Button>
                   </motion.div>
                 </form>

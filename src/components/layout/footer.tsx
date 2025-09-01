@@ -1,7 +1,7 @@
 "use client"
 
 import React from 'react'
-import { Mail, Phone, MapPin, Linkedin, Twitter } from 'lucide-react'
+import { Mail, Phone, MapPin, Linkedin, X } from 'lucide-react'
 import { RiversideLogo } from '@/components/ui/riverside-logo'
 
 export function Footer() {
@@ -18,16 +18,20 @@ export function Footer() {
             </p>
             <div className="mt-6 flex space-x-4">
               <a 
-                href="#" 
+                href="https://www.linkedin.com/in/jose-gonzalez-4036a336a/" 
+                target="_blank"
+                rel="noopener noreferrer"
                 className="text-riverside-white/60 hover:text-riverside-blue transition-colors duration-200"
               >
                 <Linkedin className="h-5 w-5" />
               </a>
               <a 
-                href="#" 
+                href="https://x.com/RiversideGenAi" 
+                target="_blank"
+                rel="noopener noreferrer"
                 className="text-riverside-white/60 hover:text-riverside-blue transition-colors duration-200"
               >
-                <Twitter className="h-5 w-5" />
+                <X className="h-5 w-5" />
               </a>
             </div>
           </div>
