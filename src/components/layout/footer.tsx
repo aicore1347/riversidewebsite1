@@ -55,11 +55,11 @@ export function Footer() {
             <div className="space-y-3">
               <div className="flex items-center text-riverside-white/70">
                 <Mail className="h-4 w-4 mr-2 text-riverside-blue" />
-                <span className="text-sm">contact@riversideai.com</span>
+                <span className="text-sm">riversidegenai@gmail.com</span>
               </div>
               <div className="flex items-center text-riverside-white/70">
                 <Phone className="h-4 w-4 mr-2 text-riverside-blue" />
-                <span className="text-sm">+1 (555) 123-4567</span>
+                <span className="text-sm">(503) 808-0702</span>
               </div>
               <div className="flex items-start text-riverside-white/70">
                 <MapPin className="h-4 w-4 mr-2 text-riverside-blue mt-0.5" />

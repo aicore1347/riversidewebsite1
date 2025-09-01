@@ -5,6 +5,14 @@
 @custom-variant dark (&:is(.dark *));
 
 @theme inline {
+  --color-riverside-black: #000000;
+  --color-riverside-blue: #00BFFF;
+  --color-riverside-blue-light: #33CCFF;
+  --color-riverside-blue-dark: #0099CC;
+  --color-riverside-white: #FFFFFF;
+  --animate-pulse-blue: pulse-blue 2s ease-in-out infinite;
+  --animate-fade-in: fade-in 0.5s ease-in-out;
+  --animate-slide-up: slide-up 0.5s ease-in-out;
   --color-background: var(--background);
   --color-foreground: var(--foreground);
   --font-sans: var(--font-geist-sans);
@@ -119,25 +127,35 @@
   }
   
   html {
-    @apply dark;  /* Force dark theme */
+    color-scheme: dark;
   }
   
   body {
-    @apply bg-riverside-black text-riverside-white;
-    background: #000000;
-    color: #FFFFFF;
+    background: linear-gradient(135deg, #000000 0%, #0a0a0a 50%, #000000 100%) !important;
+    color: #FFFFFF !important;
+    font-family: var(--font-geist-sans), system-ui, sans-serif;
+    min-height: 100vh;
+  }
+  
+  /* Add smooth scrolling */
+  html {
+    scroll-behavior: smooth;
   }
 }
 
 /* Custom Riverside AI Styles */
 @layer components {
   .network-node {
-    @apply w-3 h-3 rounded-full bg-riverside-blue animate-pulse-blue;
+    width: 0.75rem;
+    height: 0.75rem;
+    border-radius: 50%;
+    background-color: #00BFFF;
+    animation: pulse-blue 2s ease-in-out infinite;
     box-shadow: 0 0 10px rgba(0, 191, 255, 0.5);
   }
   
   .network-connection {
-    @apply border-riverside-blue/30;
+    border-color: rgba(0, 191, 255, 0.3);
     background: linear-gradient(90deg, transparent, rgba(0, 191, 255, 0.3), transparent);
   }
   
@@ -146,12 +164,139 @@
   }
   
   .card-glow {
-    background: rgba(15, 15, 15, 0.8);
-    border: 1px solid rgba(0, 191, 255, 0.2);
-    box-shadow: 0 0 20px rgba(0, 191, 255, 0.1);
+    background: rgba(15, 15, 15, 0.8) !important;
+    border: 1px solid rgba(0, 191, 255, 0.2) !important;
+    box-shadow: 0 0 20px rgba(0, 191, 255, 0.1), inset 0 1px 0 rgba(255, 255, 255, 0.1) !important;
+    color: #FFFFFF !important;
+    backdrop-filter: blur(10px) !important;
+    transition: all 0.3s ease !important;
+  }
+  
+  .card-glow:hover {
+    border-color: rgba(0, 191, 255, 0.4) !important;
+    box-shadow: 0 0 30px rgba(0, 191, 255, 0.2), inset 0 1px 0 rgba(255, 255, 255, 0.2) !important;
+    transform: translateY(-2px) !important;
   }
   
   .text-glow {
     text-shadow: 0 0 10px rgba(0, 191, 255, 0.3);
+    color: #00BFFF !important;
   }
+  
+  .bg-riverside-black {
+    background-color: #000000 !important;
+  }
+  
+  .bg-riverside-blue {
+    background-color: #00BFFF !important;
+  }
+  
+  .text-riverside-white {
+    color: #FFFFFF !important;
+  }
+  
+  .text-riverside-blue {
+    color: #00BFFF !important;
+  }
+  
+  .border-riverside-blue {
+    border-color: #00BFFF !important;
+  }
+  
+  /* Beautiful button hover effects */
+  .btn-primary {
+    background: linear-gradient(135deg, #00BFFF 0%, #0099CC 100%) !important;
+    border: none !important;
+    box-shadow: 0 4px 15px rgba(0, 191, 255, 0.3) !important;
+    transition: all 0.3s ease !important;
+  }
+  
+  .btn-primary:hover {
+    transform: translateY(-2px) !important;
+    box-shadow: 0 8px 25px rgba(0, 191, 255, 0.4) !important;
+  }
+  
+  /* Beautiful section backgrounds */
+  .section-gradient {
+    background: linear-gradient(180deg, rgba(0, 0, 0, 0.9) 0%, rgba(0, 0, 0, 0.95) 50%, rgba(0, 0, 0, 0.9) 100%);
+    position: relative;
+  }
+  
+  .section-gradient::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 1px;
+    background: linear-gradient(90deg, transparent 0%, rgba(0, 191, 255, 0.5) 50%, transparent 100%);
+  }
+}
+
+/* Keyframes for animations */
+@keyframes pulse-blue {
+  0%, 100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.5;
+  }
+}
+
+@keyframes fade-in {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+@keyframes slide-up {
+  0% {
+    transform: translateY(20px);
+    opacity: 0;
+  }
+  100% {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+/* Line drawing animations */
+@keyframes draw-line {
+  0% {
+    stroke-dashoffset: 100;
+  }
+  50% {
+    stroke-dashoffset: 0;
+  }
+  100% {
+    stroke-dashoffset: -100;
+  }
+}
+
+.animate-draw-line-1 {
+  animation: draw-line 3s ease-in-out infinite;
+  animation-delay: 0s;
+}
+
+.animate-draw-line-2 {
+  animation: draw-line 3s ease-in-out infinite;
+  animation-delay: 0.2s;
+}
+
+.animate-draw-line-3 {
+  animation: draw-line 3s ease-in-out infinite;
+  animation-delay: 0.4s;
+}
+
+.animate-draw-line-4 {
+  animation: draw-line 3s ease-in-out infinite;
+  animation-delay: 0.6s;
+}
+
+.animate-draw-circle {
+  animation: draw-line 3s ease-in-out infinite;
+  animation-delay: 0.8s;
 }

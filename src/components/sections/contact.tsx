@@ -31,13 +31,13 @@ export function Contact() {
     {
       icon: Mail,
       title: "Email Us",
-      details: "contact@riversideai.com",
+      details: "riversidegenai@gmail.com",
       description: "Get in touch for any inquiries"
     },
     {
       icon: Phone,
       title: "Call Us",
-      details: "+1 (555) 123-4567",
+      details: "(503) 808-0702",
       description: "Speak with our AI experts"
     },
     {
@@ -65,7 +65,7 @@ export function Contact() {
             Get In <span className="text-riverside-blue text-glow">Touch</span>
           </h2>
           <p className="text-xl text-riverside-white/80 max-w-3xl mx-auto leading-relaxed">
-            Ready to start your AI transformation? We'd love to hear about your project 
+            Ready to start your AI transformation? We&apos;d love to hear about your project 
             and discuss how we can help you achieve your goals.
           </p>
         </motion.div>
@@ -279,16 +279,18 @@ export function Contact() {
                 <motion.button
                   whileHover={{ scale: 1.05 }}
                   whileTap={{ scale: 0.95 }}
-                  className="bg-riverside-blue hover:bg-riverside-blue-dark text-riverside-black font-semibold px-6 py-3 rounded-lg transition-all duration-200"
+                  className="font-semibold px-6 py-3 rounded-lg transition-all duration-200"
+                  style={{backgroundColor: '#00BFFF', color: '#000000'}}
                 >
-                  Call Now: +1 (555) 123-4567
+                  Call Now: (503) 808-0702
                 </motion.button>
                 <motion.button
                   whileHover={{ scale: 1.05 }}
                   whileTap={{ scale: 0.95 }}
-                  className="border border-riverside-blue/50 text-riverside-blue hover:bg-riverside-blue/10 px-6 py-3 rounded-lg transition-all duration-200"
+                  className="px-6 py-3 rounded-lg transition-all duration-200"
+                  style={{border: '1px solid rgba(0, 191, 255, 0.5)', color: '#00BFFF', backgroundColor: 'transparent'}}
                 >
-                  Email: contact@riversideai.com
+                  Email: riversidegenai@gmail.com
                 </motion.button>
               </div>
             </CardContent>

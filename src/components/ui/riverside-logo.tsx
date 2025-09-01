@@ -4,14 +4,12 @@ import React from 'react'
 
 interface RiversideLogoProps {
   className?: string
-  width?: number
   height?: number
   showText?: boolean
 }
 
 export function RiversideLogo({ 
   className = "", 
-  width = 200, 
   height = 80,
   showText = true 
 }: RiversideLogoProps) {

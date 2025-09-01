@@ -57,7 +57,7 @@ export function About() {
             About <span className="text-riverside-blue text-glow">Riverside AI</span>
           </h2>
           <p className="text-xl text-riverside-white/80 max-w-3xl mx-auto leading-relaxed">
-            We're a team of AI experts, data scientists, and business strategists dedicated to 
+            We&apos;re a team of AI experts, data scientists, and business strategists dedicated to 
             helping companies harness the transformative power of artificial intelligence.
           </p>
         </motion.div>
@@ -108,7 +108,7 @@ export function About() {
                   but fundamentally transform how companies operate, innovate, and grow in the digital age.
                 </p>
                 <p className="text-lg text-riverside-white/80 leading-relaxed">
-                  We believe that AI shouldn't be a luxury reserved for tech giants. Every business, 
+                  We believe that AI shouldn&apos;t be a luxury reserved for tech giants. Every business, 
                   regardless of size or industry, deserves access to the competitive advantages that 
                   artificial intelligence can provide.
                 </p>

@@ -7,9 +7,9 @@ import { Button } from '@/components/ui/button'
 
 export function Hero() {
   return (
-    <section id="home" className="relative min-h-screen flex items-center justify-center overflow-hidden">
+    <section id="home" className="relative min-h-screen flex items-center justify-center overflow-hidden" style={{backgroundColor: '#000000'}}>
       {/* Background Pattern */}
-      <div className="absolute inset-0 bg-network-pattern opacity-20"></div>
+      <div className="absolute inset-0 opacity-20" style={{backgroundImage: 'url("data:image/svg+xml,%3Csvg width="60" height="60" viewBox="0 0 60 60" xmlns="http://www.w3.org/2000/svg"%3E%3Cg fill="none" fill-rule="evenodd"%3E%3Cg fill="%2300BFFF" fill-opacity="0.1"%3E%3Ccircle cx="30" cy="30" r="2"/%3E%3C/g%3E%3C/g%3E%3C/svg%3E")'}}></div>
       
       {/* Animated Network Background */}
       <div className="absolute inset-0">
@@ -50,7 +50,8 @@ export function Hero() {
             initial={{ opacity: 0, scale: 0.9 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ duration: 0.6, delay: 0.2 }}
-            className="inline-flex items-center px-4 py-2 rounded-full bg-riverside-blue/10 border border-riverside-blue/30 text-riverside-blue text-sm font-medium mb-8"
+            className="inline-flex items-center px-4 py-2 rounded-full text-sm font-medium mb-8"
+            style={{backgroundColor: 'rgba(0, 191, 255, 0.1)', border: '1px solid rgba(0, 191, 255, 0.3)', color: '#00BFFF'}}
           >
             <Sparkles className="w-4 h-4 mr-2" />
             AI-Powered Business Solutions
@@ -63,13 +64,13 @@ export function Hero() {
             transition={{ duration: 0.8, delay: 0.3 }}
             className="text-5xl md:text-7xl lg:text-8xl font-bold mb-6 leading-tight"
           >
-            <span className="block text-riverside-white">
+            <span className="block" style={{color: '#FFFFFF'}}>
               Transforming
             </span>
-            <span className="block text-riverside-blue text-glow">
+            <span className="block text-glow" style={{color: '#00BFFF', textShadow: '0 0 10px rgba(0, 191, 255, 0.3)'}}>
               businesses
             </span>
-            <span className="block text-riverside-white">
+            <span className="block" style={{color: '#FFFFFF'}}>
               with AI
             </span>
           </motion.h1>
@@ -79,9 +80,10 @@ export function Hero() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.5 }}
-            className="text-xl md:text-2xl text-riverside-white/80 max-w-3xl mx-auto mb-10 leading-relaxed"
+            className="text-xl md:text-2xl max-w-3xl mx-auto mb-10 leading-relaxed"
+            style={{color: 'rgba(255, 255, 255, 0.8)'}}
           >
-            Unlock your company's potential with cutting-edge AI solutions designed to scale operations, 
+            Unlock your company&apos;s potential with cutting-edge AI solutions designed to scale operations, 
             automate processes, and drive exponential growth.
           </motion.p>
 
@@ -94,7 +96,8 @@ export function Hero() {
           >
             <Button
               size="lg"
-              className="bg-riverside-blue hover:bg-riverside-blue-dark text-riverside-black font-semibold px-8 py-4 text-lg transition-all duration-200 hover:shadow-lg hover:shadow-riverside-blue/25 group"
+              className="font-semibold px-8 py-4 text-lg transition-all duration-200 hover:shadow-lg group"
+              style={{backgroundColor: '#00BFFF', color: '#000000', border: 'none'}}
             >
               Start Your AI Journey
               <ArrowRight className="ml-2 h-5 w-5 group-hover:translate-x-1 transition-transform" />
@@ -103,7 +106,8 @@ export function Hero() {
             <Button
               variant="outline"
               size="lg"
-              className="border-riverside-blue/50 text-riverside-blue hover:bg-riverside-blue/10 px-8 py-4 text-lg transition-all duration-200"
+              className="px-8 py-4 text-lg transition-all duration-200"
+              style={{borderColor: 'rgba(0, 191, 255, 0.5)', color: '#00BFFF', backgroundColor: 'transparent'}}
             >
               Schedule Consultation
             </Button>
@@ -138,13 +142,14 @@ export function Hero() {
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.6, delay: 1.1 + index * 0.2 }}
-                className="card-glow rounded-lg p-6 backdrop-blur-sm"
+                className="rounded-lg p-6 backdrop-blur-sm"
+                style={{background: 'rgba(15, 15, 15, 0.8)', border: '1px solid rgba(0, 191, 255, 0.2)', boxShadow: '0 0 20px rgba(0, 191, 255, 0.1)'}}
               >
-                <feature.icon className="w-8 h-8 text-riverside-blue mx-auto mb-4" />
-                <h3 className="text-lg font-semibold text-riverside-white mb-2">
+                <feature.icon className="w-8 h-8 mx-auto mb-4" style={{color: '#00BFFF'}} />
+                <h3 className="text-lg font-semibold mb-2" style={{color: '#FFFFFF'}}>
                   {feature.title}
                 </h3>
-                <p className="text-riverside-white/70 text-sm">
+                <p className="text-sm" style={{color: 'rgba(255, 255, 255, 0.7)'}}>
                   {feature.description}
                 </p>
               </motion.div>
@@ -162,12 +167,14 @@ export function Hero() {
           <motion.div
             animate={{ y: [0, 8, 0] }}
             transition={{ duration: 2, repeat: Infinity }}
-            className="w-6 h-10 border-2 border-riverside-blue/50 rounded-full flex justify-center"
+            className="w-6 h-10 border-2 rounded-full flex justify-center"
+            style={{borderColor: 'rgba(0, 191, 255, 0.5)'}}
           >
             <motion.div
               animate={{ y: [0, 12, 0], opacity: [0, 1, 0] }}
               transition={{ duration: 2, repeat: Infinity }}
-              className="w-1 h-3 bg-riverside-blue rounded-full mt-2"
+              className="w-1 h-3 rounded-full mt-2"
+              style={{backgroundColor: '#00BFFF'}}
             />
           </motion.div>
         </motion.div>

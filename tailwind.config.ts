@@ -1,7 +1,6 @@
 import type { Config } from 'tailwindcss'
 
 const config: Config = {
-  darkMode: 'class',
   content: [
     './src/pages/**/*.{js,ts,jsx,tsx,mdx}',
     './src/components/**/*.{js,ts,jsx,tsx,mdx}',
@@ -11,24 +10,11 @@ const config: Config = {
     extend: {
       colors: {
         // Riverside AI Brand Colors from Logo
-        riverside: {
-          black: '#000000',
-          blue: '#00BFFF',     // Cyan blue from logo nodes
-          'blue-light': '#33CCFF', // Lighter variant
-          'blue-dark': '#0099CC',  // Darker variant
-          white: '#FFFFFF',
-          gray: {
-            900: '#0A0A0A',
-            800: '#1A1A1A',
-            700: '#2A2A2A',
-            600: '#3A3A3A',
-            500: '#4A4A4A',
-            400: '#6A6A6A',
-            300: '#8A8A8A',
-            200: '#AAAAAA',
-            100: '#CACACA',
-          }
-        },
+        'riverside-black': '#000000',
+        'riverside-blue': '#00BFFF',
+        'riverside-blue-light': '#33CCFF',
+        'riverside-blue-dark': '#0099CC',
+        'riverside-white': '#FFFFFF',
         background: 'hsl(var(--background))',
         foreground: 'hsl(var(--foreground))',
         card: {
@@ -104,14 +90,9 @@ const config: Config = {
           },
         },
       },
-      backgroundImage: {
-        'gradient-radial': 'radial-gradient(var(--tw-gradient-stops))',
-        'gradient-conic': 'conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))',
-        'network-pattern': 'url("data:image/svg+xml,%3Csvg width="60" height="60" viewBox="0 0 60 60" xmlns="http://www.w3.org/2000/svg"%3E%3Cg fill="none" fill-rule="evenodd"%3E%3Cg fill="%2300BFFF" fill-opacity="0.1"%3E%3Ccircle cx="30" cy="30" r="2"/%3E%3C/g%3E%3C/g%3E%3C/svg%3E")',
-      },
     },
   },
-  plugins: [require('tailwindcss-animate')],
+  plugins: [],
 } satisfies Config
 
 export default config

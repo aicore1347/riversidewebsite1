@@ -5,7 +5,7 @@ import Contact from '@/components/sections/contact'
 
 export default function Home() {
   return (
-    <div className="bg-riverside-black text-riverside-white min-h-screen">
+    <div className="bg-riverside-black text-riverside-white min-h-screen" style={{backgroundColor: '#000000', color: '#FFFFFF'}}>
       <Hero />
       <Services />
       <About />

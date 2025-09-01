@@ -16,7 +16,7 @@ export function Header() {
   const [isMenuOpen, setIsMenuOpen] = useState(false)
 
   return (
-    <header className="fixed top-0 left-0 right-0 z-50 bg-riverside-black/90 backdrop-blur-md border-b border-riverside-blue/20">
+    <header className="fixed top-0 left-0 right-0 z-50 backdrop-blur-md border-b" style={{backgroundColor: 'rgba(0, 0, 0, 0.9)', borderBottomColor: 'rgba(0, 191, 255, 0.2)'}}>
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-16">
           {/* Logo */}
@@ -32,6 +32,7 @@ export function Header() {
                   <a
                     href={item.href}
                     className="text-riverside-white hover:text-riverside-blue transition-colors duration-200 font-medium tracking-wide"
+                    style={{color: '#FFFFFF'}}
                   >
                     {item.name}
                   </a>
@@ -44,7 +45,8 @@ export function Header() {
           <div className="hidden md:block">
             <Button 
               variant="default" 
-              className="bg-riverside-blue hover:bg-riverside-blue-dark text-riverside-black font-semibold px-6 py-2 transition-all duration-200 hover:shadow-lg hover:shadow-riverside-blue/25"
+              className="font-semibold px-6 py-2 transition-all duration-200 hover:shadow-lg"
+              style={{backgroundColor: '#00BFFF', color: '#000000', border: 'none'}}
             >
               Get Started
             </Button>
