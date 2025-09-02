@@ -59,7 +59,12 @@ export function Footer() {
             <div className="space-y-3">
               <div className="flex items-center text-riverside-white/70">
                 <Mail className="h-4 w-4 mr-2 text-riverside-blue" />
-                <span className="text-sm">riversidegenai@gmail.com</span>
+                <a 
+                  href="mailto:riversidegenai@gmail.com" 
+                  className="text-sm hover:text-riverside-blue transition-colors duration-200"
+                >
+                  riversidegenai@gmail.com
+                </a>
               </div>
               <div className="flex items-center text-riverside-white/70">
                 <Phone className="h-4 w-4 mr-2 text-riverside-blue" />

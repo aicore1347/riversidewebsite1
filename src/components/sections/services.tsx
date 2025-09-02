@@ -175,20 +175,16 @@ export function Services() {
                 Let&apos;s discuss how AI can transform your business operations and drive growth.
               </p>
               <div className="flex flex-col sm:flex-row gap-4 justify-center">
-                <motion.button
+                <motion.a
+                  href="https://calendly.com/riversidegenai"
+                  target="_blank"
+                  rel="noopener noreferrer"
                   whileHover={{ scale: 1.05 }}
                   whileTap={{ scale: 0.95 }}
-                  className="bg-riverside-blue hover:bg-riverside-blue-dark text-riverside-black font-semibold px-6 py-3 rounded-lg transition-all duration-200"
+                  className="bg-riverside-blue hover:bg-riverside-blue-dark text-riverside-black font-semibold px-6 py-3 rounded-lg transition-all duration-200 inline-block text-center"
                 >
                   Schedule Consultation
-                </motion.button>
-                <motion.button
-                  whileHover={{ scale: 1.05 }}
-                  whileTap={{ scale: 0.95 }}
-                  className="border border-riverside-blue/50 text-riverside-blue hover:bg-riverside-blue/10 px-6 py-3 rounded-lg transition-all duration-200"
-                >
-                  View Case Studies
-                </motion.button>
+                </motion.a>
               </div>
             </CardContent>
           </Card>

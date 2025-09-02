@@ -79,12 +79,19 @@ export function Hero() {
             </Button>
             
             <Button
+              asChild
               variant="outline"
               size="lg"
               className="px-8 py-4 text-lg transition-all duration-200"
               style={{borderColor: 'rgba(0, 191, 255, 0.5)', color: '#00BFFF', backgroundColor: 'transparent'}}
             >
-              Schedule Consultation
+              <a 
+                href="https://calendly.com/riversidegenai"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                Schedule Consultation
+              </a>
             </Button>
           </motion.div>
 

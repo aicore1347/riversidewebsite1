@@ -142,7 +142,16 @@ export function Contact() {
                       {info.title}
                     </h4>
                     <p className="text-riverside-blue font-medium mb-1">
-                      {info.details}
+                      {info.title === "Email Us" ? (
+                        <a 
+                          href={`mailto:${info.details}`} 
+                          className="hover:text-riverside-blue-dark transition-colors duration-200"
+                        >
+                          {info.details}
+                        </a>
+                      ) : (
+                        info.details
+                      )}
                     </p>
                     <p className="text-riverside-white/70 text-sm">
                       {info.description}
@@ -160,23 +169,18 @@ export function Contact() {
               viewport={{ once: true }}
               className="mt-12 space-y-4"
             >
-              <motion.button
+              <motion.a
+                href="https://calendly.com/riversidegenai"
+                target="_blank"
+                rel="noopener noreferrer"
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
                 className="w-full bg-riverside-blue hover:bg-riverside-blue-dark text-riverside-black font-semibold px-6 py-3 rounded-lg transition-all duration-200 flex items-center justify-center"
               >
                 <Calendar className="w-5 h-5 mr-2" />
                 Schedule a Call
-              </motion.button>
+              </motion.a>
               
-              <motion.button
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.95 }}
-                className="w-full border border-riverside-blue/50 text-riverside-blue hover:bg-riverside-blue/10 px-6 py-3 rounded-lg transition-all duration-200 flex items-center justify-center"
-              >
-                <MessageSquare className="w-5 h-5 mr-2" />
-                Live Chat
-              </motion.button>
             </motion.div>
           </motion.div>
 
@@ -419,14 +423,15 @@ export function Contact() {
                 >
                   Call Now: (503) 808-0702
                 </motion.button>
-                <motion.button
+                <motion.a
+                  href="mailto:riversidegenai@gmail.com"
                   whileHover={{ scale: 1.05 }}
                   whileTap={{ scale: 0.95 }}
-                  className="px-6 py-3 rounded-lg transition-all duration-200"
+                  className="px-6 py-3 rounded-lg transition-all duration-200 inline-block"
                   style={{border: '1px solid rgba(0, 191, 255, 0.5)', color: '#00BFFF', backgroundColor: 'transparent'}}
                 >
                   Email: riversidegenai@gmail.com
-                </motion.button>
+                </motion.a>
               </div>
             </CardContent>
           </Card>
